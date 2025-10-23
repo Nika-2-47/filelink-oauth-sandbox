@@ -13,6 +13,14 @@ class Program
         
         // 送信するファイル
         var filePath = "test.txt"; // 任意のファイルパス
+        
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine($"Error: File '{filePath}' not found.");
+            Console.WriteLine("Creating a test file...");
+            await File.WriteAllTextAsync(filePath, "This is a test file created by FileLinkClient.");
+        }
+        
         var apiUrl = "http://localhost:5000/api/files/upload";
 
         using var http = new HttpClient();
